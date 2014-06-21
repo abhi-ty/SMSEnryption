@@ -91,7 +91,7 @@ public class MainActivity extends ActionBarActivity {
     protected void sendSMS(String phoneNumber, String message) throws NoSuchAlgorithmException, NoSuchPaddingException {
 		// TODO Auto-generated method stub
     	//android.os.Debug.waitForDebugger();
-    	  /*if (KeySent ==false)
+    	  if (KeySent ==false)
           {
           	generateSecretKey();
           	PendingIntent pi = PendingIntent.getActivity(this, 0,new Intent(), 0);             
@@ -100,7 +100,13 @@ public class MainActivity extends ActionBarActivity {
             //byte[] data = text.getBytes("UTF-8");
             String base64 = Base64.encodeToString(enc, Base64.DEFAULT);
             sms.sendTextMessage(phoneNumber, null, base64, pi, null);     
+           
+            
+            @SuppressWarnings("unused")
+            byte[] temp = Base64.decode(base64, Base64.DEFAULT);
+			SecretKey NewKey = new SecretKeySpec(temp, "AES");
             KeySent=true;
+            
           }
     	  else 
     	  {
@@ -108,14 +114,14 @@ public class MainActivity extends ActionBarActivity {
     		  PendingIntent pi = PendingIntent.getActivity(this, 0,new Intent(), 0);             
               SmsManager sms = SmsManager.getDefault();
               sms.sendTextMessage(phoneNumber, null, encmsg, pi, null);   
-    	  }*/
+    	  }
     	
-    	PendingIntent pi = PendingIntent.getActivity(this, 0,new Intent(), 0);             
+    	/*PendingIntent pi = PendingIntent.getActivity(this, 0,new Intent(), 0);             
         SmsManager sms = SmsManager.getDefault();
     	cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
     	objSecKey =new SecretKeySpec("AAAAAAAAAAAAAAAA".getBytes(), "AES");
           encrypt();
-          sms.sendTextMessage(phoneNumber, null, encmsg, pi, null);   
+          sms.sendTextMessage(phoneNumber, null, encmsg, pi, null);   */
 		
 	}
 

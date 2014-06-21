@@ -58,7 +58,7 @@ public class SMSReceive extends BroadcastReceiver {
 				str+=msgs[i].getMessageBody().toString();
 			}
 			 
-			objSecKey =new SecretKeySpec("AAAAAAAAAAAAAAAA".getBytes(), "AES");
+			/*objSecKey =new SecretKeySpec("AAAAAAAAAAAAAAAA".getBytes(), "AES");
 			try {
 				decipher =  Cipher.getInstance("AES/CBC/PKCS5Padding");
 			} catch (NoSuchAlgorithmException e) {
@@ -92,11 +92,13 @@ public class SMSReceive extends BroadcastReceiver {
 			} catch (UnsupportedEncodingException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-			}
+			}*/
 			
-			/*if(keyFlag == true)
+			if(keyFlag == true)
 			{
-				objSecKey = new SecretKeySpec(str.getBytes(), "AES");
+				//objSecKey = new SecretKeySpec(str.getBytes(), "AES");
+				  byte[] temp = Base64.decode(str, Base64.DEFAULT);
+				  objSecKey = new SecretKeySpec(temp, "AES");
 				keyFlag=false;
 			}
 			else
@@ -147,7 +149,7 @@ public class SMSReceive extends BroadcastReceiver {
 				}
 				
 				
-			}*/
+			}
 			
 			// ---display the new SMS message---
 			Toast.makeText(context, str, Toast.LENGTH_LONG).show();
